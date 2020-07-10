@@ -8,8 +8,8 @@ Messages are exchanged via JSON objects following the structure below:
 
 ```json
 {
-    type: <string>
-    payload: <object>
+    "topic": <string>
+    "payload": <object>
 }
 ```
 
@@ -25,10 +25,10 @@ Robot Code --> Endpoint
 #### Message Structure
 ```json
 {
-    type: "digital-configure",
-    payload: {
-        channel: <number>,
-        isInput: <boolean>
+    "topic": "digital-configure",
+    "payload": {
+        "channel": <number>,
+        "isInput": <boolean>
     }
 }
 ```
@@ -42,10 +42,10 @@ Robot Code --> Endpoint
 #### Message Structure
 ```json
 {
-    type: "digital-out",
-    payload: {
-        channel: <number>,
-        value: <boolean>
+    "topic": "digital-out",
+    "payload": {
+        "channel": <number>,
+        "value": <boolean>
     }
 }
 ```
@@ -59,10 +59,10 @@ Endpoint --> Robot Code
 #### Message Structure
 ```json
 {
-    type: "digital-in",
-    payload: {
-        channel: <number>,
-        value: <boolean>
+    "topic": "digital-in",
+    "payload": {
+        "channel": <number>,
+        "value": <boolean>
     }
 }
 ```
@@ -79,10 +79,10 @@ Robot Code --> Endpoint
 #### Message Structure
 ```json
 {
-    type: "analog-out",
-    payload: {
-        channel: <number>,
-        voltage: <number>
+    "topic": "analog-out",
+    "payload": {
+        "channel": <number>,
+        "voltage": <number>
     }
 }
 ```
@@ -96,10 +96,10 @@ Endpoint --> Robot Code
 #### Message Structure
 ```json
 {
-    type: "analog-in",
-    payload: {
-        channel: <number>,
-        voltage: <number>
+    "topic": "analog-in",
+    "payload": {
+        "channel": <number>,
+        "voltage": <number>
     }
 }
 ```
@@ -116,10 +116,10 @@ Robot Code --> Endpoint
 #### Message Structure
 ```json
 {
-    type: "pwm",
-    payload: {
-        channel: <number>,
-        value: <number>
+    "topic": "pwm",
+    "payload": {
+        "channel": <number>,
+        "value": <number>
     }
 }
 ```
