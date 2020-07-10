@@ -8,7 +8,7 @@ Messages are exchanged via JSON objects following the structure below:
 
 ```json
 {
-    "topic": <string>
+    "topic": <string>,
     "payload": <object>
 }
 ```
