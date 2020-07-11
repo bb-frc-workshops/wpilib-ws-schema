@@ -1,0 +1,113 @@
+asyncapi: 2.0.0
+info:
+  title: WPILib WebSocket API
+  version: "0.0.1"
+  description: |
+    API for a WPILib based robot program to communciate with a remote endpoint over WebSockets
+    
+  license:
+    name: MIT
+
+defaultContentType: application/json
+
+channels:
+  digital/config:
+    description: Configure a digital port
+    publish:
+      operationId: digitalConfig
+      message:
+        $ref: "#/components/messages/digitalConfig"
+  digital/out:
+    description: Write to a digital port
+    publish:
+      operationId: digitalOut
+      message:
+        $ref: "#/components/messages/digitalValue"
+  digital/in:
+    description: Reading from a digital port
+    subscribe:
+      operationId: digitalIn
+      message:
+        $ref: "#/components/messages/digitalValue"
+  analog/out:
+    description: Write to an analog port
+    publish:
+      operationId: analogOut
+      message:
+        $ref: "#/components/messages/analogValue"
+  analog/in:
+    description: Reading from an analog port
+    subscribe:
+      operationId: analogIn
+      message:
+        $ref: "#/components/messages/analogValue"
+  pwm/out:
+    description: Write to a PWM port
+    publish:
+      operationId: pwmOut
+      message:
+        $ref: "#/components/messages/pwmValue"
+        
+components:
+  messages:
+    digitalConfig:
+      name: digitalConfig
+      title: Digital Configuration Message
+      payload:
+        $ref: "#/components/schemas/digitalConfigPayload"
+    digitalValue:
+      name: digitalValue
+      title: Digital Port Value Message
+      payload:
+        $ref: "#/components/schemas/digitalPortValuePayload"
+    analogValue:
+      name: analogValue
+      title: Analog Port Value Message
+      payload:
+        $ref: "#/components/schemas/analogPortValuePayload"
+    pwmValue:
+      name: pwmValue
+      title: PWM Port Value Message
+      payload:
+        $ref: "#/components/schemas/pwmPortValuePayload"
+
+  schemas:
+    digitalConfigPayload:
+      type: object
+      properties:
+        channel:
+          type: integer
+          description: Channel number
+        isInput:
+          type: boolean
+          description: Whether or not this port is an input
+    digitalPortValuePayload:
+      type: object
+      properties:
+        channel:
+          type: integer
+          description: Channel number
+        value:
+          type: boolean
+          description: Value of the digital port
+    analogPortValuePayload:
+      type: object
+      properties:
+        channel:
+          type: integer
+          description: Channel number
+        voltage:
+          type: number
+          description: Voltage of the analog port
+          minimum: 0.0
+    pwmPortValuePayload:
+      type: object
+      properties:
+        channel:
+          type: integer
+          description: Channel number
+        value:
+          type: number
+          description: Value of the PWM port [-1.0, 1.0]
+          minimum: -1.0
+          maximum: 1.0
