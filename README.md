@@ -13,17 +13,23 @@ The HTML Output of what is on master can be found [here](https://htmlpreview.git
 ## General Structure
 The WPILib HALSim Extension acts as a WebSocket client and communicates with an endpoint that runs a WebSocket server.
 
-Messages are exchanged via JSON objects following the structure below:
+Messages are exchanged via JSON objects following the structure:
 
 ```
 {
-    "topic": <string>,
-    "payload": <object>
+    "type": <string>,
+    "device": <string>,
+    "data": <object>
 }
 ```
 
-The `topic` string will be the name of the channel (as defined in the AsyncAPI schema), and the payload is the object that is defined in the applicable message for that channel.
+The `type` string will be the type of device (e.g. DIO, AnalogIn, PWM, etc) and `device` represents a device identifier (usually the channel number).
+
+## Generating Documentation
+To generate the documentation, run the following from the `schema` directory:
+
+- HTML: `ag ./wpilib-ws.yaml @asyncapi/html-template -o ../html`
+- Markdown: `ag ./wpilib-ws.yaml @asyncapi/markdown-template -o ../md`
 
 ## TODO
-- Need to handle encoders
 - System messages? e.g. enable/disable, heartbeat, reset
