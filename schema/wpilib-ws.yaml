@@ -60,6 +60,7 @@ components:
             - $ref: "#/components/schemas/ainData"
             - $ref: "#/components/schemas/aoutData"
             - $ref: "#/components/schemas/driverstationData"
+            - $ref: "#/components/schemas/joystickData"
             - $ref: "#/components/schemas/encoderData"
             - $ref: "#/components/schemas/pwmData"
             - $ref: "#/components/schemas/relayData"
@@ -67,7 +68,7 @@ components:
 
     dioData:
       type: object
-      description: DIO Data
+      description: "DIO Data (type: DIO, device: channel number)"
       properties:
         <init:
           type: boolean
@@ -83,7 +84,7 @@ components:
 
     ainData:
       type: object
-      description: Analog In Data
+      description: "Analog In Data (type: AI, device: channel number)"
       properties:
         <init:
           type: boolean
@@ -95,25 +96,22 @@ components:
         ">voltage":
           type: number
           description: The current input voltage of this Analog In channel
-        accum:
-          type: object
-          properties:
-            <init:
-              type: boolean
-              description: Whether or not the accumulator for this Analog In channel has been initialized
-            ">value":
-              type: number
-              description: Current accumulator value
-            ">count":
-              type: number
-            <center:
-              type: number
-            <deadband:
-              type: number
+        <accum_init:
+          type: boolean
+          description: Whether or not the accumulator for this Analog In channel has been initialized
+        ">accum_value":
+          type: number
+          description: Current accumulator value
+        ">accum_count":
+          type: number
+        <accum_center:
+          type: number
+        <accum_deadband:
+          type: number
 
     aoutData:
       type: object
-      description: Analog Out Data
+      description: "Analog Out Data (type: AO, device: channel number)"
       properties:
         <init:
           type: boolean
@@ -124,7 +122,7 @@ components:
 
     driverstationData:
       type: object
-      description: DriverStation Data
+      description: "DriverStation Data (type: DriverStation)"
       properties:
         ">enabled":
           type: boolean
@@ -157,19 +155,23 @@ components:
             - blue2
             - blue3
           description: Driver Station Position identifier
-        joysticks:
-          description: Information about all joysticks connected to the DS
-          type: array
-          items:
-            $ref: "#/components/schemas/joystickData"
+        ">new_data":
+          type: boolean
+          description: Set whenever there is new DS data available
 
     encoderData:
       type: object
-      description: Encoder Data
+      description: "Encoder Data (type: Encoder, device: FPGA encoder number)"
       properties:
         <init:
           type: boolean
           description: Whether or not this encoder channel is initialized
+        <channel_a:
+          type: number
+          description: The Digital IO channel used for channel A
+        <channel_b:
+          type: number
+          description: The Digital IO channel used for channel B
         ">count":
           type: integer
           description: Current count of the encoder
@@ -188,7 +190,7 @@ components:
 
     pwmData:
       type: object
-      description: PWM Data
+      description: "PWM Data (type: PWM, device: channel number)"
       properties:
         <init:
           type: boolean
@@ -216,7 +218,7 @@ components:
 
     relayData:
       type: object
-      description: Relay data
+      description: "Relay data (type: Relay, device: channel number)"
       properties:
         <init_fwd:
           type: boolean
@@ -233,7 +235,7 @@ components:
 
     roborioData:
       type: object
-      description: RoboRIO Data
+      description: "RoboRIO Data (type: RoboRIO)"
       properties:
         ">fpga_button":
           type: boolean
@@ -283,7 +285,7 @@ components:
 
     joystickData:
       type: object
-      description: Joystick Properties
+      description: "Joystick Properties (type: Joystick, device: joystick number)"
       properties:
         ">buttons":
           description: State of all buttons on this joystick
