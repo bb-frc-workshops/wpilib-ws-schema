@@ -70,7 +70,7 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
 <tr>
   <td>data.&lt;1&gt; </td>
   <td>object</td>
-  <td><p>DIO Data</p>
+  <td><p>DIO Data (type: DIO, device: channel number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
@@ -104,7 +104,7 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
 <tr>
   <td>data.&lt;2&gt; </td>
   <td>object</td>
-  <td><p>Analog In Data</p>
+  <td><p>Analog In Data (type: AI, device: channel number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
@@ -135,39 +135,33 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;2&gt;.accum </td>
-  <td>object</td>
-  <td></td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;2&gt;.accum.&lt;init </td>
+  <td>data.&lt;2&gt;.&lt;accum_init </td>
   <td>boolean</td>
   <td><p>Whether or not the accumulator for this Analog In channel has been initialized</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;2&gt;.accum.&gt;value </td>
+  <td>data.&lt;2&gt;.&gt;accum_value </td>
   <td>number</td>
   <td><p>Current accumulator value</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;2&gt;.accum.&gt;count </td>
+  <td>data.&lt;2&gt;.&gt;accum_count </td>
   <td>number</td>
   <td></td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;2&gt;.accum.&lt;center </td>
+  <td>data.&lt;2&gt;.&lt;accum_center </td>
   <td>number</td>
   <td></td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;2&gt;.accum.&lt;deadband </td>
+  <td>data.&lt;2&gt;.&lt;accum_deadband </td>
   <td>number</td>
   <td></td>
   <td><em>Any</em></td>
@@ -175,7 +169,7 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
 <tr>
   <td>data.&lt;3&gt; </td>
   <td>object</td>
-  <td><p>Analog Out Data</p>
+  <td><p>Analog Out Data (type: AO, device: channel number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
@@ -196,7 +190,7 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
 <tr>
   <td>data.&lt;4&gt; </td>
   <td>object</td>
-  <td><p>DriverStation Data</p>
+  <td><p>DriverStation Data (type: DriverStation)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
@@ -257,272 +251,293 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
   <td><code>red1</code>, <code>red2</code>, <code>red3</code>, <code>blue1</code>, <code>blue2</code>, <code>blue3</code></td>
 </tr>
 <tr>
-  <td>data.&lt;4&gt;.joysticks </td>
-  <td>array(object)</td>
-  <td><p>Information about all joysticks connected to the DS</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;4&gt;.joysticks.&gt;buttons </td>
-  <td>array(boolean)</td>
-  <td><p>State of all buttons on this joystick</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;4&gt;.joysticks.&gt;povs </td>
-  <td>array(number)</td>
-  <td><p>State of all POV switches on this joystick</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;4&gt;.joysticks.&gt;axes </td>
-  <td>array(number)</td>
-  <td><p>State of all axes on this joystick</p>
+  <td>data.&lt;4&gt;.&gt;new_data </td>
+  <td>boolean</td>
+  <td><p>Set whenever there is new DS data available</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
   <td>data.&lt;5&gt; </td>
   <td>object</td>
-  <td><p>Encoder Data</p>
+  <td><p>Joystick Properties (type: Joystick, device: joystick number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;5&gt;.&lt;init </td>
-  <td>boolean</td>
-  <td><p>Whether or not this encoder channel is initialized</p>
+  <td>data.&lt;5&gt;.&gt;buttons </td>
+  <td>array(boolean)</td>
+  <td><p>State of all buttons on this joystick</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;5&gt;.&gt;count </td>
-  <td>integer</td>
-  <td><p>Current count of the encoder</p>
+  <td>data.&lt;5&gt;.&gt;povs </td>
+  <td>array(number)</td>
+  <td><p>State of all POV switches on this joystick</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;5&gt;.&gt;period </td>
-  <td>number</td>
-  <td><p>Current period of the encoder</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;5&gt;.&lt;reset </td>
-  <td>boolean</td>
-  <td><p>Whether or not this encoder should be reset</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;5&gt;.&lt;reverse_direction </td>
-  <td>boolean</td>
-  <td><p>Whether or not this encoder should reverse its counting direction</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;5&gt;.&lt;samples_to_avg </td>
-  <td>integer</td>
-  <td><p>Number of samples to average over</p>
+  <td>data.&lt;5&gt;.&gt;axes </td>
+  <td>array(number)</td>
+  <td><p>State of all axes on this joystick</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
   <td>data.&lt;6&gt; </td>
   <td>object</td>
-  <td><p>PWM Data</p>
+  <td><p>Encoder Data (type: Encoder, device: FPGA encoder number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
   <td>data.&lt;6&gt;.&lt;init </td>
   <td>boolean</td>
+  <td><p>Whether or not this encoder channel is initialized</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&lt;channel_a </td>
+  <td>number</td>
+  <td><p>The Digital IO channel used for channel A</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&lt;channel_b </td>
+  <td>number</td>
+  <td><p>The Digital IO channel used for channel B</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&gt;count </td>
+  <td>integer</td>
+  <td><p>Current count of the encoder</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&gt;period </td>
+  <td>number</td>
+  <td><p>Current period of the encoder</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&lt;reset </td>
+  <td>boolean</td>
+  <td><p>Whether or not this encoder should be reset</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&lt;reverse_direction </td>
+  <td>boolean</td>
+  <td><p>Whether or not this encoder should reverse its counting direction</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&lt;samples_to_avg </td>
+  <td>integer</td>
+  <td><p>Number of samples to average over</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;7&gt; </td>
+  <td>object</td>
+  <td><p>PWM Data (type: PWM, device: channel number)</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;7&gt;.&lt;init </td>
+  <td>boolean</td>
   <td><p>Whether or not this PWM channel is initialized</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;6&gt;.&lt;speed </td>
+  <td>data.&lt;7&gt;.&lt;speed </td>
   <td>number</td>
   <td><p>Speed value of this PWM channel</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;6&gt;.&lt;position </td>
+  <td>data.&lt;7&gt;.&lt;position </td>
   <td>number</td>
   <td><p>Position value of this PWM channel</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;6&gt;.&lt;raw </td>
+  <td>data.&lt;7&gt;.&lt;raw </td>
   <td>integer</td>
   <td><p>Raw value of this PWM channel</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;6&gt;.&lt;period_scale </td>
+  <td>data.&lt;7&gt;.&lt;period_scale </td>
   <td>number</td>
   <td><p>Period scale factor</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;6&gt;.&lt;zero_latch </td>
+  <td>data.&lt;7&gt;.&lt;zero_latch </td>
   <td>boolean</td>
   <td></td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;7&gt; </td>
+  <td>data.&lt;8&gt; </td>
   <td>object</td>
-  <td><p>Relay data</p>
+  <td><p>Relay data (type: Relay, device: channel number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;7&gt;.&lt;init_fwd </td>
+  <td>data.&lt;8&gt;.&lt;init_fwd </td>
   <td>boolean</td>
   <td><p>Whether or not the forward direction of this relay is initialized</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;7&gt;.&lt;init_rev </td>
+  <td>data.&lt;8&gt;.&lt;init_rev </td>
   <td>boolean</td>
   <td><p>Whether or not the reverse direction of this relay is initialized</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;7&gt;.&lt;fwd </td>
+  <td>data.&lt;8&gt;.&lt;fwd </td>
   <td>boolean</td>
   <td><p>Whether or not the forward direction of this relay is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;7&gt;.&lt;rev </td>
+  <td>data.&lt;8&gt;.&lt;rev </td>
   <td>boolean</td>
   <td><p>Whether or not the reverse direction of this relay is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt; </td>
+  <td>data.&lt;9&gt; </td>
   <td>object</td>
-  <td><p>RoboRIO Data</p>
+  <td><p>RoboRIO Data (type: RoboRIO)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;fpga_button </td>
+  <td>data.&lt;9&gt;.&gt;fpga_button </td>
   <td>boolean</td>
   <td><p>Whether or not the FPGA button on the RoboRIO is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;vin_voltage </td>
+  <td>data.&lt;9&gt;.&gt;vin_voltage </td>
   <td>number</td>
   <td><p>Input voltage</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;vin_current </td>
+  <td>data.&lt;9&gt;.&gt;vin_current </td>
   <td>number</td>
   <td><p>Input Current</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;6v_voltage </td>
+  <td>data.&lt;9&gt;.&gt;6v_voltage </td>
   <td>number</td>
   <td><p>Voltage on the 6V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;6v_current </td>
+  <td>data.&lt;9&gt;.&gt;6v_current </td>
   <td>number</td>
   <td><p>Current on the 6V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;6v_active </td>
+  <td>data.&lt;9&gt;.&gt;6v_active </td>
   <td>boolean</td>
   <td><p>Whether or not the 6V rail is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;6v_faults </td>
+  <td>data.&lt;9&gt;.&gt;6v_faults </td>
   <td>number</td>
   <td><p>Bitmask of faults on the 6V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;5v_voltage </td>
+  <td>data.&lt;9&gt;.&gt;5v_voltage </td>
   <td>number</td>
   <td><p>Voltage on the 5V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;5v_current </td>
+  <td>data.&lt;9&gt;.&gt;5v_current </td>
   <td>number</td>
   <td><p>Current on the 5V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;5v_active </td>
+  <td>data.&lt;9&gt;.&gt;5v_active </td>
   <td>boolean</td>
   <td><p>Whether or not the 5V rail is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;5v_faults </td>
+  <td>data.&lt;9&gt;.&gt;5v_faults </td>
   <td>number</td>
   <td><p>Bitmask of faults on the 5V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;3v3_voltage </td>
+  <td>data.&lt;9&gt;.&gt;3v3_voltage </td>
   <td>number</td>
   <td><p>Voltage on the 3.3V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;3v3_current </td>
+  <td>data.&lt;9&gt;.&gt;3v3_current </td>
   <td>number</td>
   <td><p>Current on the 3.3V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;3v3_active </td>
+  <td>data.&lt;9&gt;.&gt;3v3_active </td>
   <td>boolean</td>
   <td><p>Whether or not the 3.3V rail is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;3v3_faults </td>
+  <td>data.&lt;9&gt;.&gt;3v3_faults </td>
   <td>number</td>
   <td><p>Bitmask of faults on the 3.3V rail</p>
 </td>
@@ -606,7 +621,7 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
 <tr>
   <td>data.&lt;1&gt; </td>
   <td>object</td>
-  <td><p>DIO Data</p>
+  <td><p>DIO Data (type: DIO, device: channel number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
@@ -640,7 +655,7 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
 <tr>
   <td>data.&lt;2&gt; </td>
   <td>object</td>
-  <td><p>Analog In Data</p>
+  <td><p>Analog In Data (type: AI, device: channel number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
@@ -671,39 +686,33 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;2&gt;.accum </td>
-  <td>object</td>
-  <td></td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;2&gt;.accum.&lt;init </td>
+  <td>data.&lt;2&gt;.&lt;accum_init </td>
   <td>boolean</td>
   <td><p>Whether or not the accumulator for this Analog In channel has been initialized</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;2&gt;.accum.&gt;value </td>
+  <td>data.&lt;2&gt;.&gt;accum_value </td>
   <td>number</td>
   <td><p>Current accumulator value</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;2&gt;.accum.&gt;count </td>
+  <td>data.&lt;2&gt;.&gt;accum_count </td>
   <td>number</td>
   <td></td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;2&gt;.accum.&lt;center </td>
+  <td>data.&lt;2&gt;.&lt;accum_center </td>
   <td>number</td>
   <td></td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;2&gt;.accum.&lt;deadband </td>
+  <td>data.&lt;2&gt;.&lt;accum_deadband </td>
   <td>number</td>
   <td></td>
   <td><em>Any</em></td>
@@ -711,7 +720,7 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
 <tr>
   <td>data.&lt;3&gt; </td>
   <td>object</td>
-  <td><p>Analog Out Data</p>
+  <td><p>Analog Out Data (type: AO, device: channel number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
@@ -732,7 +741,7 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
 <tr>
   <td>data.&lt;4&gt; </td>
   <td>object</td>
-  <td><p>DriverStation Data</p>
+  <td><p>DriverStation Data (type: DriverStation)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
@@ -793,272 +802,293 @@ Message envelope. Note that the &quot;data&quot; field contains a diff of the cu
   <td><code>red1</code>, <code>red2</code>, <code>red3</code>, <code>blue1</code>, <code>blue2</code>, <code>blue3</code></td>
 </tr>
 <tr>
-  <td>data.&lt;4&gt;.joysticks </td>
-  <td>array(object)</td>
-  <td><p>Information about all joysticks connected to the DS</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;4&gt;.joysticks.&gt;buttons </td>
-  <td>array(boolean)</td>
-  <td><p>State of all buttons on this joystick</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;4&gt;.joysticks.&gt;povs </td>
-  <td>array(number)</td>
-  <td><p>State of all POV switches on this joystick</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;4&gt;.joysticks.&gt;axes </td>
-  <td>array(number)</td>
-  <td><p>State of all axes on this joystick</p>
+  <td>data.&lt;4&gt;.&gt;new_data </td>
+  <td>boolean</td>
+  <td><p>Set whenever there is new DS data available</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
   <td>data.&lt;5&gt; </td>
   <td>object</td>
-  <td><p>Encoder Data</p>
+  <td><p>Joystick Properties (type: Joystick, device: joystick number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;5&gt;.&lt;init </td>
-  <td>boolean</td>
-  <td><p>Whether or not this encoder channel is initialized</p>
+  <td>data.&lt;5&gt;.&gt;buttons </td>
+  <td>array(boolean)</td>
+  <td><p>State of all buttons on this joystick</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;5&gt;.&gt;count </td>
-  <td>integer</td>
-  <td><p>Current count of the encoder</p>
+  <td>data.&lt;5&gt;.&gt;povs </td>
+  <td>array(number)</td>
+  <td><p>State of all POV switches on this joystick</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;5&gt;.&gt;period </td>
-  <td>number</td>
-  <td><p>Current period of the encoder</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;5&gt;.&lt;reset </td>
-  <td>boolean</td>
-  <td><p>Whether or not this encoder should be reset</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;5&gt;.&lt;reverse_direction </td>
-  <td>boolean</td>
-  <td><p>Whether or not this encoder should reverse its counting direction</p>
-</td>
-  <td><em>Any</em></td>
-</tr>
-<tr>
-  <td>data.&lt;5&gt;.&lt;samples_to_avg </td>
-  <td>integer</td>
-  <td><p>Number of samples to average over</p>
+  <td>data.&lt;5&gt;.&gt;axes </td>
+  <td>array(number)</td>
+  <td><p>State of all axes on this joystick</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
   <td>data.&lt;6&gt; </td>
   <td>object</td>
-  <td><p>PWM Data</p>
+  <td><p>Encoder Data (type: Encoder, device: FPGA encoder number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
   <td>data.&lt;6&gt;.&lt;init </td>
   <td>boolean</td>
+  <td><p>Whether or not this encoder channel is initialized</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&lt;channel_a </td>
+  <td>number</td>
+  <td><p>The Digital IO channel used for channel A</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&lt;channel_b </td>
+  <td>number</td>
+  <td><p>The Digital IO channel used for channel B</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&gt;count </td>
+  <td>integer</td>
+  <td><p>Current count of the encoder</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&gt;period </td>
+  <td>number</td>
+  <td><p>Current period of the encoder</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&lt;reset </td>
+  <td>boolean</td>
+  <td><p>Whether or not this encoder should be reset</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&lt;reverse_direction </td>
+  <td>boolean</td>
+  <td><p>Whether or not this encoder should reverse its counting direction</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;6&gt;.&lt;samples_to_avg </td>
+  <td>integer</td>
+  <td><p>Number of samples to average over</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;7&gt; </td>
+  <td>object</td>
+  <td><p>PWM Data (type: PWM, device: channel number)</p>
+</td>
+  <td><em>Any</em></td>
+</tr>
+<tr>
+  <td>data.&lt;7&gt;.&lt;init </td>
+  <td>boolean</td>
   <td><p>Whether or not this PWM channel is initialized</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;6&gt;.&lt;speed </td>
+  <td>data.&lt;7&gt;.&lt;speed </td>
   <td>number</td>
   <td><p>Speed value of this PWM channel</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;6&gt;.&lt;position </td>
+  <td>data.&lt;7&gt;.&lt;position </td>
   <td>number</td>
   <td><p>Position value of this PWM channel</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;6&gt;.&lt;raw </td>
+  <td>data.&lt;7&gt;.&lt;raw </td>
   <td>integer</td>
   <td><p>Raw value of this PWM channel</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;6&gt;.&lt;period_scale </td>
+  <td>data.&lt;7&gt;.&lt;period_scale </td>
   <td>number</td>
   <td><p>Period scale factor</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;6&gt;.&lt;zero_latch </td>
+  <td>data.&lt;7&gt;.&lt;zero_latch </td>
   <td>boolean</td>
   <td></td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;7&gt; </td>
+  <td>data.&lt;8&gt; </td>
   <td>object</td>
-  <td><p>Relay data</p>
+  <td><p>Relay data (type: Relay, device: channel number)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;7&gt;.&lt;init_fwd </td>
+  <td>data.&lt;8&gt;.&lt;init_fwd </td>
   <td>boolean</td>
   <td><p>Whether or not the forward direction of this relay is initialized</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;7&gt;.&lt;init_rev </td>
+  <td>data.&lt;8&gt;.&lt;init_rev </td>
   <td>boolean</td>
   <td><p>Whether or not the reverse direction of this relay is initialized</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;7&gt;.&lt;fwd </td>
+  <td>data.&lt;8&gt;.&lt;fwd </td>
   <td>boolean</td>
   <td><p>Whether or not the forward direction of this relay is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;7&gt;.&lt;rev </td>
+  <td>data.&lt;8&gt;.&lt;rev </td>
   <td>boolean</td>
   <td><p>Whether or not the reverse direction of this relay is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt; </td>
+  <td>data.&lt;9&gt; </td>
   <td>object</td>
-  <td><p>RoboRIO Data</p>
+  <td><p>RoboRIO Data (type: RoboRIO)</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;fpga_button </td>
+  <td>data.&lt;9&gt;.&gt;fpga_button </td>
   <td>boolean</td>
   <td><p>Whether or not the FPGA button on the RoboRIO is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;vin_voltage </td>
+  <td>data.&lt;9&gt;.&gt;vin_voltage </td>
   <td>number</td>
   <td><p>Input voltage</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;vin_current </td>
+  <td>data.&lt;9&gt;.&gt;vin_current </td>
   <td>number</td>
   <td><p>Input Current</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;6v_voltage </td>
+  <td>data.&lt;9&gt;.&gt;6v_voltage </td>
   <td>number</td>
   <td><p>Voltage on the 6V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;6v_current </td>
+  <td>data.&lt;9&gt;.&gt;6v_current </td>
   <td>number</td>
   <td><p>Current on the 6V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;6v_active </td>
+  <td>data.&lt;9&gt;.&gt;6v_active </td>
   <td>boolean</td>
   <td><p>Whether or not the 6V rail is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;6v_faults </td>
+  <td>data.&lt;9&gt;.&gt;6v_faults </td>
   <td>number</td>
   <td><p>Bitmask of faults on the 6V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;5v_voltage </td>
+  <td>data.&lt;9&gt;.&gt;5v_voltage </td>
   <td>number</td>
   <td><p>Voltage on the 5V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;5v_current </td>
+  <td>data.&lt;9&gt;.&gt;5v_current </td>
   <td>number</td>
   <td><p>Current on the 5V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;5v_active </td>
+  <td>data.&lt;9&gt;.&gt;5v_active </td>
   <td>boolean</td>
   <td><p>Whether or not the 5V rail is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;5v_faults </td>
+  <td>data.&lt;9&gt;.&gt;5v_faults </td>
   <td>number</td>
   <td><p>Bitmask of faults on the 5V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;3v3_voltage </td>
+  <td>data.&lt;9&gt;.&gt;3v3_voltage </td>
   <td>number</td>
   <td><p>Voltage on the 3.3V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;3v3_current </td>
+  <td>data.&lt;9&gt;.&gt;3v3_current </td>
   <td>number</td>
   <td><p>Current on the 3.3V rail</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;3v3_active </td>
+  <td>data.&lt;9&gt;.&gt;3v3_active </td>
   <td>boolean</td>
   <td><p>Whether or not the 3.3V rail is active</p>
 </td>
   <td><em>Any</em></td>
 </tr>
 <tr>
-  <td>data.&lt;8&gt;.&gt;3v3_faults </td>
+  <td>data.&lt;9&gt;.&gt;3v3_faults </td>
   <td>number</td>
   <td><p>Bitmask of faults on the 3.3V rail</p>
 </td>
